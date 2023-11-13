@@ -1,0 +1,40 @@
+apiVersion: db2u.databases.ibm.com/v1
+kind: Db2uCluster
+metadata:
+  name: db2
+  namespace: db2
+  labels:
+    app.kubernetes.io/instance: db2u-operator
+    app.kubernetes.io/managed-by: Db2U-Team
+    app.kubernetes.io/name: db2u-operator
+spec:
+  size: 1
+  license:
+    accept: true
+  podConfig:
+    db2u:
+      resource:
+        db2u:
+          limits:
+            cpu: '6'
+            memory: 12Gi
+          requests:
+            cpu: '2'
+            memory: 4Gi
+  account:
+    imagePullSecrets:
+      - ibm-entitlement-key
+    privileged: true
+  environment:
+    dbType: db2oltp
+  version: s11.5.8.0-cn2
+  storage:
+    - name: share
+      type: create
+      spec:
+        accessModes:
+          - ReadWriteMany
+        resources:
+          requests:
+            storage: 100Gi
+        storageClassName: ocs-storagecluster-cephfs

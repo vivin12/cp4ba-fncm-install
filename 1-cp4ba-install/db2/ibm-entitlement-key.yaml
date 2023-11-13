@@ -1,0 +1,9 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: ibm-entitlement-key
+  namespace: db2
+data:
+  .dockerconfigjson: >-
+    <setme>
+type: kubernetes.io/dockerconfigjson

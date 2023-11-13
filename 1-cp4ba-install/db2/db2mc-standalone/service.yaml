@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: db2mc
+spec:
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443
+  type: ClusterIP
+  selector:
+    app: db2mc

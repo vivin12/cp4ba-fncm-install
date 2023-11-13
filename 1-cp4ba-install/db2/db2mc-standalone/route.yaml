@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: db2mc
+spec:
+  to:
+    kind: Service
+    name: db2mc
+    weight: 100
+  port:
+    targetPort: 8443
+  tls:
+    termination: passthrough 
+    insecureEdgeTerminationPolicy: None 
+  wildcardPolicy: None
